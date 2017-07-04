@@ -6,7 +6,7 @@ import replace from 'lodash/replace';
 import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import isArray from 'lodash/isArray';
-import read from 'ok-selector';
+import read from 'ok-selector-immutable';
 import Immutable from 'immutable';
 import isPromise from 'is-promise';
 
@@ -105,11 +105,13 @@ export default function theGreatMutator (initialState = {}, options = defaults) 
 
   let applyResult;
   function applyPushAction (dotString, entries, value) {
-    return applyResult(dotString, entries.concat([value]));
+    const applyTo = readNoWarning(pendingMerge, dotString) || entries;
+    return applyResult(dotString, applyTo.concat([value]));
   }
 
   function applyPopAction (dotString, entries, value) {
-    return applyResult(dotString, entries.filterNot((x) => x.get('id') === value.get('id')));
+    const applyTo = readNoWarning(pendingMerge, dotString) || entries;
+    return applyResult(dotString, applyTo.filterNot((x) => x.get('id') === value.get('id')));
   }
 
   function applyReplaceAction (dotString, entries, value) {

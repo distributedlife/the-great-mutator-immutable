@@ -1,8 +1,8 @@
 {
-  "name": "the-great-mutator",
+  "name": "the-great-mutator-immutable",
   "version": "1.0.2",
   "description": "Provides an interface to describe mutations on a state tree",
-  "main": "native.js",
+  "main": "lib/immutable.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register -c -S -R spec **/*spec*.js",
     "predist": "rm -rf lib",
@@ -11,8 +11,6 @@
   },
   "files": [
     "lib",
-    "native.js",
-    "immutable.js",
     "package.json",
     "README.md"
   ],
@@ -34,7 +32,7 @@
   "dependencies": {
     "is-promise": "^2.1.0",
     "lodash": "^4.15.0",
-    "ok-selector": "^1.0.0"
+    "ok-selector-immutable": "^2.0.0"
   },
   "peerDependencies": {
     "immutable": "^3.8.1"
@@ -46,7 +44,6 @@
     "babel-register": "^6.14.0",
     "eslint": "^3.4.0",
     "expect": "^1.20.2",
-    "immutable": "^3.8.1",
     "sinon": "^1.17.5"
   }
 }
